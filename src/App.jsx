@@ -3,6 +3,8 @@ import { Button, DatePicker } from 'antd';
 import logo from './logo.svg';
 import './App.scss';
 
+/* eslint-disable */
+
 function Logo(props) {
 
   function handleClick() {
@@ -14,7 +16,8 @@ function Logo(props) {
       onClick={handleClick}
       src={logo}
       className="App-logo"
-      alt="logo" />
+      alt="logo"
+    />
   );
 }
 
@@ -26,9 +29,9 @@ class App extends Component {
   }
 
   handleBtnClick = () => {
-    console.log('test');  
+    console.log('test');
   }
-  
+
   render() {
     return (
       <div className="App">
