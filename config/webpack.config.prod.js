@@ -11,6 +11,7 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
+const publicProp = require('./publicProp');
 const getClientEnvironment = require('./env');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -54,7 +55,15 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: 'source-map',
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: {
+    main: [
+      require.resolve('babel-polyfill'),
+      require.resolve('./polyfills'),
+      paths.appIndexJs,
+    ],
+    vendor: publicProp.vender
+  },
+
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -69,35 +78,9 @@ module.exports = {
     devtoolModuleFilenameTemplate: info =>
       path.relative(paths.appSrc, info.absoluteResourcePath),
   },
-  resolve: {
-    // This allows you to set a fallback for where Webpack should look for modules.
-    // We placed these paths second because we want `node_modules` to "win"
-    // if there are any conflicts. This matches Node resolution mechanism.
-    // https://github.com/facebookincubator/create-react-app/issues/253
-    modules: ['node_modules', paths.appNodeModules].concat(
-      // It is guaranteed to exist because we tweak it in `env.js`
-      process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
-    ),
-    // These are the reasonable defaults supported by the Node ecosystem.
-    // We also include JSX as a common component filename extension to support
-    // some tools, although we do not recommend using it, see:
-    // https://github.com/facebookincubator/create-react-app/issues/290
-    extensions: ['.js', '.json', '.jsx'],
-    alias: {
-      
-      // Support React Native Web
-      // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      'react-native': 'react-native-web',
-    },
-    plugins: [
-      // Prevents users from importing files from outside of src/ (or node_modules/).
-      // This often causes confusion because we only process files within src/ with babel.
-      // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
-      // please link the files into your node_modules/ and let module-resolution kick in.
-      // Make sure your source files are compiled, as they will not be processed in any way.
-      new ModuleScopePlugin(paths.appSrc),
-    ],
-  },
+
+  resolve: publicProp.resolve,
+
   module: {
     strictExportPresence: true,
     rules: [
@@ -110,16 +93,20 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         enforce: 'pre',
+        include: paths.appSrc,
         use: [
           {
+            loader: require.resolve('eslint-loader'),
             options: {
               formatter: eslintFormatter,
-              
+              failOnError: true,
+              outputReport : true,
+              // quiet: true,
+              // emitErrorL true,
+              // cache: true,
             },
-            loader: require.resolve('eslint-loader'),
           },
         ],
-        include: paths.appSrc,
       },
       // ** ADDING/UPDATING LOADERS **
       // The "file" loader handles all assets unless explicitly excluded.
@@ -134,6 +121,8 @@ module.exports = {
           /\.html$/,
           /\.(js|jsx)$/,
           /\.css$/,
+          /\.scss$/,
+          /\.less$/,
           /\.json$/,
           /\.bmp$/,
           /\.gif$/,
@@ -159,7 +148,20 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
-        loader: require.resolve('babel-loader'),
+        use: [{
+          loader: require.resolve('babel-loader'),
+          options : {
+            presets: [
+              'env',
+              'stage-0',
+              'react',
+            ],
+            plugins: [
+              ['import', { libraryName: 'antd', style: true }],
+            ],
+            babelrc: false,
+          },
+        }],
         
       },
       // The notation here is somewhat confusing.
@@ -176,7 +178,7 @@ module.exports = {
       // in the main CSS file.
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
+        use: ExtractTextPlugin.extract(
           Object.assign(
             {
               fallback: require.resolve('style-loader'),
@@ -196,12 +198,6 @@ module.exports = {
                     plugins: () => [
                       require('postcss-flexbugs-fixes'),
                       autoprefixer({
-                        browsers: [
-                          '>1%',
-                          'last 4 versions',
-                          'Firefox ESR',
-                          'not ie < 9', // React doesn't support IE8 anyway
-                        ],
                         flexbox: 'no-2009',
                       }),
                     ],
@@ -216,6 +212,73 @@ module.exports = {
       },
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.
+
+      {
+        test : /\.scss$/,
+        use  : ExtractTextPlugin.extract(
+          Object.assign(
+            {
+              fallback: require.resolve('style-loader'),
+              use: [
+                {
+                  loader  : require.resolve('css-loader'), // translates CSS into CommonJS
+                  options : {
+                    sourceMap     : true,
+                    minimize      : true,
+                    importLoaders : 3,
+                  },
+                },
+                require.resolve('resolve-url-loader'), // resolves relative paths in url() statements based on the original source file
+                {
+                  loader: require.resolve('postcss-loader'),
+                  options: {
+                    ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+                    plugins: () => [
+                      require('postcss-flexbugs-fixes'),
+                      autoprefixer({
+                        flexbox: 'no-2009',
+                      }),
+                    ],
+                  },
+                },
+
+                {
+                  loader  : require.resolve('sass-loader'),  // compiles Sass to CSS,
+                  options : {
+                    includePaths : [`${paths.appNodeModules}/normalize-scss/sass`],
+                  },
+                },
+              ]
+            },
+            extractTextPluginOptions
+          )
+        ),
+      },
+
+      {
+        test : /\.less$/,
+        use  : ExtractTextPlugin.extract(
+          Object.assign(
+            {
+              fallback: require.resolve('style-loader'),
+              use: [
+                {
+                  loader  : require.resolve('css-loader'), // translates CSS into CommonJS
+                  options : {
+                    minimize      : true,
+                    importLoaders : 1,
+                  },
+                },
+                {
+                  loader  : require.resolve('less-loader'),
+                  options : publicProp.lessLoader.options
+                },
+              ]
+            },
+            extractTextPluginOptions
+          )
+        ),
+      },
     ],
   },
   plugins: [
@@ -305,6 +368,14 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name      : 'vendor',
+      minChunks : function (module) {
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      },
+    }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
