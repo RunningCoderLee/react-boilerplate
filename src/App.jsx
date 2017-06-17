@@ -43,7 +43,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <div className="wrapper">
-          <Button type="primary" onClick={this.handleBtnClick}>测试</Button>
+          <Button type="primary" size="large" onClick={this.handleBtnClick}>测试</Button>
           <DatePicker />
         </div>
       </div>

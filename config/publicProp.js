@@ -1,5 +1,6 @@
 const paths = require('./paths');
 const path = require('path');
+const antdVars = require('./antdVars');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 
 exports.resolve = {
@@ -36,9 +37,7 @@ exports.vender = [
 
 exports.lessLoader = {
   options: {
-    modifyVars: {
-      '@primary-color': '#1DA57A'
-    },
+    modifyVars: antdVars,
   }
-}
+};
 // module.exports = ;

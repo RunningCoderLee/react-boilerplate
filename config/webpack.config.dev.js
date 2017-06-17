@@ -68,16 +68,16 @@ module.exports = {
     // containing code from all our entry points, and the Webpack runtime.
     filename   : 'static/js/[name].js',
     // There are also additional JS chunk files if you use code splitting.
-    chunkFilename: 'static/js/[name].[hash:8].chunk.js',
+    chunkFilename: 'static/js/[name].chunk.js',
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath),
   },
-  
+
   resolve: publicProp.resolve,
-  
+
   module: {
     strictExportPresence: true,
     rules: [
@@ -245,7 +245,7 @@ module.exports = {
   },
 
   profile: true,
-  
+
   plugins: [
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
