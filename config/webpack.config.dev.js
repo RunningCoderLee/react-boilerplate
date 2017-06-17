@@ -151,16 +151,16 @@ module.exports = {
         use: [{
           loader: require.resolve('babel-loader'),
           options: {
-            presets: [
-              'env',
-              'stage-0',
-              'react',
-            ],
+            // presets: [
+            //   'env',
+            //   'stage-0',
+            //   'react',
+            // ],
             cacheDirectory: true,
-            plugins: [
-              ['import', { libraryName: 'antd', style: true }],
-            ],
-            babelrc: false,
+            // plugins: [
+            //   ['import', { libraryName: 'antd', style: true }],
+            // ],
+            // babelrc: false,
           },
         }]
       },

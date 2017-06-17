@@ -151,15 +151,7 @@ module.exports = {
         use: [{
           loader: require.resolve('babel-loader'),
           options : {
-            presets: [
-              'env',
-              'stage-0',
-              'react',
-            ],
-            plugins: [
-              ['import', { libraryName: 'antd', style: true }],
-            ],
-            babelrc: false,
+
           },
         }],
 
