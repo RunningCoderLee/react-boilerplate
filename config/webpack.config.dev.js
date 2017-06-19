@@ -5,6 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
@@ -151,16 +152,7 @@ module.exports = {
         use: [{
           loader: require.resolve('babel-loader'),
           options: {
-            // presets: [
-            //   'env',
-            //   'stage-0',
-            //   'react',
-            // ],
             cacheDirectory: true,
-            // plugins: [
-            //   ['import', { libraryName: 'antd', style: true }],
-            // ],
-            // babelrc: false,
           },
         }]
       },
@@ -277,6 +269,9 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
+    // Import lodash on Demand
+    new LodashModuleReplacementPlugin(publicProp.lodashPluginSets),
 
     new webpack.optimize.CommonsChunkPlugin({
       name      : 'vendor',
