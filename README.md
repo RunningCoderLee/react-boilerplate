@@ -1,4 +1,4 @@
-# Romens React脚手架 ![Version](https://img.shields.io/badge/version-1.3.1-orange.svg?style-plastic) ![Docs](https://img.shields.io/badge/docs-95%25-blue.svg?style-plastic)
+# Romens React脚手架 ![Version](https://img.shields.io/badge/version-0.1.0-orange.svg?style-plastic) ![Docs](https://img.shields.io/badge/docs-95%25-blue.svg?style-plastic)
 
 此脚手架基于[Create-react-app](https://raw.githubusercontent.com/facebookincubator/create-react-app)创建
 
