@@ -52,7 +52,7 @@ module.exports = {
       // Errors should be considered fatal in development
       require.resolve('react-error-overlay'),
       // Finally, this is your app's code:
-      paths.appIndexJs,
+      paths.appIndexJsx,
       // We include the app code last so that if there is a runtime error during
       // initialization, it doesn't blow up the WebpackDevServer client, and
       // changing JS code would still trigger a refresh.
@@ -74,7 +74,7 @@ module.exports = {
     publicPath: publicPath,
     // Point sourcemap entries to original disk location
     devtoolModuleFilenameTemplate: info =>
-      path.resolve(info.absoluteResourcePath),
+      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
 
   resolve: publicProp.resolve,
@@ -249,6 +249,8 @@ module.exports = {
       inject: true,
       template: paths.appHtml,
     }),
+    // Add module names to factory functions so they appear in browser profiler.
+    new webpack.NamedModulesPlugin(),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
     new webpack.DefinePlugin(env.stringified),
@@ -284,6 +286,7 @@ module.exports = {
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
   node: {
+    dgram: 'empty',
     fs: 'empty',
     net: 'empty',
     tls: 'empty',

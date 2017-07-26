@@ -60,7 +60,7 @@ module.exports = {
     main: [
       require.resolve('babel-polyfill'),
       require.resolve('./polyfills'),
-      paths.appIndexJs,
+      paths.appIndexJsx,
     ],
     vendor: publicProp.vender
   },
@@ -75,9 +75,11 @@ module.exports = {
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
-    // Point sourcemap entries to original disk location
+    // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
-      path.relative(paths.appSrc, info.absoluteResourcePath),
+      path
+        .relative(paths.appSrc, info.absoluteResourcePath)
+        .replace(/\\/g, '/'),
   },
 
   resolve: publicProp.resolve,
@@ -152,7 +154,7 @@ module.exports = {
         use: [{
           loader: require.resolve('babel-loader'),
           options : {
-
+            compact: true,
           },
         }],
 
@@ -315,6 +317,9 @@ module.exports = {
       },
       output: {
         comments: false,
+        // Turned on because emoji and regex is not minified properly using default
+        // https://github.com/facebookincubator/create-react-app/issues/2488
+        ascii_only: true,
       },
       sourceMap: true,
     }),
@@ -342,6 +347,11 @@ module.exports = {
           // This message occurs for every build and is a bit too noisy.
           return;
         }
+        if (message.indexOf('Skipping static resource') === 0) {
+          // This message obscures real errors so we ignore it.
+          // https://github.com/facebookincubator/create-react-app/issues/2612
+          return;
+        }
         console.log(message);
       },
       minify: true,
@@ -352,9 +362,6 @@ module.exports = {
       navigateFallbackWhitelist: [/^(?!\/__).*/],
       // Don't precache sourcemaps (they're large) and build asset manifest:
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
-      // Work around Windows path issue in SWPrecacheWebpackPlugin:
-      // https://github.com/facebookincubator/create-react-app/issues/2235
-      stripPrefix: paths.appBuild.replace(/\\/g, '/') + '/',
     }),
     // Moment.js is an extremely popular library that bundles large locale files
     // by default due to how Webpack interprets its code. This is a practical
@@ -377,6 +384,7 @@ module.exports = {
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
   node: {
+    dgram: 'empty',
     fs: 'empty',
     net: 'empty',
     tls: 'empty',
