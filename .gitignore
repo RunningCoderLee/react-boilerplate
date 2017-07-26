@@ -25,3 +25,6 @@ yarn-error.log*
 
 # webpack build stats
 stats.json
+
+# gitlab configuration
+.gitlab
