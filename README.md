@@ -1,6 +1,5 @@
 # Romens React脚手架
-
-![Version](https://img.shields.io/badge/version-0.2.0-orange.svg)
+[![Version](https://img.shields.io/badge/version-0.2.0-orange.svg)](#)
 [![create-react-app](https://img.shields.io/badge/create--react--app-v1.0.11-brightgreen.svg)](https://github.com/facebookincubator/create-react-app/releases/tag/v1.0.11)
 [![eslint-config-airbnb](https://img.shields.io/badge/eslint--config--airbnb-v15.1.0-red.svg)](https://github.com/airbnb/javascript/releases/tag/eslint-config-airbnb-v15.1.0)
 [![ant-design](https://img.shields.io/badge/ant--design-v2.12.6-blue.svg)]()
