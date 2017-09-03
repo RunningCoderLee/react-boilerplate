@@ -1,11 +1,24 @@
 {
   "presets": [
-    "env",
-    "stage-0",
-    "react"
+    ["env", {
+      "targets": {
+        "ie": "9"
+      }
+    }],
+    "react",
+    "stage-0"
   ],
   "plugins": [
     ["import", { "libraryName": "antd", "style": true }],
     "lodash"
-  ]
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        ["transform-react-remove-prop-types", {
+          "ignoreFilenames": ["node_modules"]
+        }]
+      ]
+    }
+  }
 }

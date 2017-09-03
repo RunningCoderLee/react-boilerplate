@@ -28,3 +28,7 @@ stats.json
 
 # gitlab configuration
 .gitlab
+
+# visual stadio configuration
+.vscode
+.history

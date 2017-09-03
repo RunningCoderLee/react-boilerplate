@@ -31,8 +31,11 @@ exports.resolve = {
 };
 
 exports.vender = [
+  // 不要把lodash放进来，已通过插件做到按需加载
   'react',
-  'react-dom'
+  'react-dom',
+  'prop-types',
+  'babel-polyfill'
 ];
 
 exports.lessLoader = {
