@@ -2,7 +2,7 @@
 [![Version](https://img.shields.io/badge/version-0.2.0-orange.svg)](#)
 [![create-react-app](https://img.shields.io/badge/create--react--app-v1.0.13-brightgreen.svg)](https://github.com/facebookincubator/create-react-app/releases/tag/v1.0.13)
 [![eslint-config-airbnb](https://img.shields.io/badge/eslint--config--airbnb-v15.1.0-red.svg)](https://github.com/airbnb/javascript/releases/tag/eslint-config-airbnb-v15.1.0)
-[![ant-design](https://img.shields.io/badge/ant--design-v2.12.8-blue.svg)]()
+[![ant-design](https://img.shields.io/badge/ant--design-v2.13.0-blue.svg)]()
 
 此脚手架基于[Create-react-app](https://raw.githubusercontent.com/facebookincubator/create-react-app)创建
 
@@ -14,6 +14,7 @@
 - 集合[antd](https://ant.design/index-cn)组件库并支持自定义`less`变量和按需加载
 - 支持`sass`文件编译
 - 支持`eslint-airbnb`校验规则
+- 支持`lodash`按需加载
 
 
 ## 本地开发
@@ -92,3 +93,15 @@ $ npm run build
 本项目中所有涉及到`eslint`的规则编写和覆盖都在`.eslintrc.js`文件中，忽略规则存储在`.eslintignore`文件中
 
 
+## 规范
+
+请参阅[这里](./SPECIFICATION.md)
+
+
+## 工作流
+
+请参阅[这里](./WORKFLOW.md)
+
+## 更新日志
+
+请参阅[这里](./CHANGELOG.md)
