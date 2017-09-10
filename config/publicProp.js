@@ -19,6 +19,15 @@ exports.resolve = {
   extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
   alias: {
     'react-native': 'react-native-web',
+    $Api : paths.appApi,
+    $components : paths.appComponents,
+    $config     : paths.appConfig,
+    $layout     : paths.appLayout,
+    $pages      : paths.appPages,
+    $redux      : paths.appRedux,
+    $saga       : paths.appSaga,
+    $styles     : paths.appStyles,
+    $utils      : paths.appUtils,
   },
   plugins: [
     // Prevents users from importing files from outside of src/ (or node_modules/).
