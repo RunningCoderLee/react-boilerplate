@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](http://git.cd.romens.cn/romens-cn/boilerplate/compare/v0.2.0...v0.3.0) (2017-09-10)
+
+
+### Features
+
+* **全局:** 添加 对redux和react-router的支持 ([7570f15](http://git.cd.romens.cn/romens-cn/boilerplate/commits/7570f15))
+
+
+
 <a name="0.2.0"></a>
 # 0.2.0 (2017-09-03)
 
