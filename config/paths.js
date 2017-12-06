@@ -50,6 +50,7 @@ module.exports = {
   appApi: resolveApp('src/api'),
   appComponents: resolveApp('src/components'),
   appConfig: resolveApp('src/configuration'),
+  antThemeVars: resolveApp('config/antThemeVars.less'),
   appLayout: resolveApp('src/layout'),
   appPages: resolveApp('src/pages'),
   appRedux: resolveApp('src/redux'),

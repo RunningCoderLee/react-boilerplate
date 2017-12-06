@@ -1,6 +1,9 @@
 const paths = require('./paths');
 const path = require('path');
-const antdVars = require('./antdVars');
+const fs = require('fs');
+const lessToJs = require('less-vars-to-js');
+const themeVariables = lessToJs(fs.readFileSync(paths.antThemeVars, 'utf8')); 
+// const antdVars = require('./antdVars');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 
 exports.resolve = {
@@ -49,7 +52,7 @@ exports.vender = [
 
 exports.lessLoader = {
   options: {
-    modifyVars: antdVars,
+    modifyVars: themeVariables,
   }
 };
 

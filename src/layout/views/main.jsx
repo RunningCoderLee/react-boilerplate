@@ -1,10 +1,11 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Menu from './menu';
 
 const Main = ({ children }) => (
   <div className="main">
     <Menu />
-    <div className="content"> {children}</div>
+    <div className="content">{children}</div>
   </div>
 );
 

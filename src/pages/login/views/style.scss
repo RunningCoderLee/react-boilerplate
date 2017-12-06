@@ -2,7 +2,7 @@
   width: 300px;
   position: absolute;
   top: 50%;
-  left: 50%; 
+  left: 50%;
   transform: translate(-50%, calc(-50% - 30px));
 
   .btn-login {
@@ -10,7 +10,6 @@
   }
 
   h2 {
-
     text-align: center;
     margin: 45px 0;
 
@@ -18,5 +17,4 @@
       color: #e51c23;
     }
   }
-
 }

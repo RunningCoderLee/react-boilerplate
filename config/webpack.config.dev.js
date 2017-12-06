@@ -60,8 +60,6 @@ module.exports = {
     vendor: publicProp.vender
   },
   output: {
-    // Next line is not used in dev but WebpackDevServer crashes without it:
-    path: paths.appBuild,
     // Add /* filename */ comments to generated require()s in the output.
     pathinfo: true,
     // This does not produce a real file. It's just the virtual path that is
@@ -123,7 +121,7 @@ module.exports = {
 
           // Process JS with Babel.
           {
-            test: /\.(js|jsx)$/,
+            test: /\.(js|jsx|mjs)$/,
             include: paths.appSrc,
             use: [{
               loader: require.resolve('babel-loader'),

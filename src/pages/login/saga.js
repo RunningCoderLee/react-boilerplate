@@ -11,7 +11,7 @@ const fakeApi = password => new Promise((resolve, reject) => {
       resolve({ name: '张三' });
     }
 
-    reject({ content: '密码错误' });
+    reject(new Error('密码错误'));
   }, 3000);
 });
 

@@ -28,9 +28,7 @@ const LogInBox = (props) => {
       <FormItem >
         {getFieldDecorator('password', {
           rules: [{ required: true, message: '请输入密码！' }],
-        })(
-          <Input placeholder="密码：123456" />,
-        )}
+        })(<Input placeholder="密码：123456" />)}
       </FormItem>
       <FormItem >
         <Button
@@ -38,7 +36,8 @@ const LogInBox = (props) => {
           type="primary"
           htmlType="submit"
           loading={loading}
-        >登录</Button>
+        >登录
+        </Button>
       </FormItem>
     </Form>
   );

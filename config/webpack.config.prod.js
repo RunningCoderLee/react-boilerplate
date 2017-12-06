@@ -96,7 +96,7 @@ module.exports = {
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
         include: paths.appSrc,
         use: [
@@ -135,7 +135,7 @@ module.exports = {
           },
           // Process JS with Babel.
           {
-            test: /\.(js|jsx)$/,
+            test: /\.(js|jsx|mjs)$/,
             include: paths.appSrc,
             use: [{
               loader: require.resolve('babel-loader'),
@@ -319,6 +319,9 @@ module.exports = {
         // https://github.com/mishoo/UglifyJS2/issues/2011
         comparisons: false,
       },
+      mangle: {
+        safari10: true,
+      },        
       output: {
         comments: false,
         // Turned on because emoji and regex is not minified properly using default
