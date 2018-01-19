@@ -259,6 +259,12 @@ module.exports = {
               )
             ),
           },
+          {
+            test: /\.json5$/,
+            use: [{
+              loader: require.resolve('json5-loader'),
+            }]
+          },,
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
           // This loader don't uses a "test" so it will catch all modules
@@ -269,7 +275,7 @@ module.exports = {
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.js$/, /\.html$/, /\.json$/],
+            exclude: [/\.js$/, /\.html$/, /\.json$/, /\.yaml$/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },

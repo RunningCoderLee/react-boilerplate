@@ -1,0 +1,6 @@
+# swagger接口包basePath值的配置, 
+{
+  swagger: {
+    prefix: 'http://xxxx:nnnn/subPath'
+  }
+}
