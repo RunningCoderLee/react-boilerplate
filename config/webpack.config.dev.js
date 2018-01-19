@@ -210,6 +210,13 @@ module.exports = {
               },
             ],
           },
+          {
+            test: /\.yaml$/,
+            use: [
+              require.resolve('json-loader'),
+              require.resolve('yaml-loader'),
+            ]
+          },
 
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.
@@ -221,7 +228,7 @@ module.exports = {
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.js$/, /\.html$/, /\.json$/],
+            exclude: [/\.js$/, /\.html$/, /\.json$/, /\.yaml$/],
             loader: require.resolve('file-loader'),
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
