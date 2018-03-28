@@ -54,6 +54,7 @@ exports.vender = [
 exports.lessLoader = {
   options: {
     modifyVars: themeVariables,
+    javascriptEnabled: true
   }
 };
 

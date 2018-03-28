@@ -15,7 +15,7 @@ import { view as NoMatch } from '$pages/no-match';
 
 // const cookies = new Cookies();
 
-import '$styles/public.scss';
+// import '$styles/public.scss';
 
 const store = configureStore();
 
