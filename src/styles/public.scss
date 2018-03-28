@@ -3,29 +3,5 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  font: 100% $font-stack;
+  font-family: sans-serif;
 }
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  a {
-    text-decoration: none;
-  }
-}
-
-:focus {
-  outline: 0;
-}
-
-#root {
-  min-width: 1200px;
-  background: #F0F0F0;
-  height: 100%;
-  position: relative;
-}
-
-

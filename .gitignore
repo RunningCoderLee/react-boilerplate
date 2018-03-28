@@ -32,3 +32,6 @@ stats.json
 # visual stadio configuration
 .vscode
 .history
+
+
+.env

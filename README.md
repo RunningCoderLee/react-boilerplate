@@ -56,7 +56,7 @@ $ npm run build
 
 ### 自定义`antd`样式
 
-所有配置内容都在`config/antdVars.js`文件中
+所有配置内容都在`config/antThemeVars.less`文件中
 
 更多信息请参阅 [default.less](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less)
 
@@ -91,16 +91,6 @@ $ npm run build
 ## `eslint`配置
 
 本项目中所有涉及到`eslint`的规则编写和覆盖都在`.eslintrc.js`文件中，忽略规则存储在`.eslintignore`文件中
-
-
-## 规范
-
-请参阅[这里](./SPECIFICATION.md)
-
-
-## 工作流
-
-请参阅[这里](./WORKFLOW.md)
 
 ## 更新日志
 
