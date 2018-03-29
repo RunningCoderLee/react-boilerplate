@@ -6,7 +6,7 @@ import './style.scss';
 
 const About = () => (
   <div>
-    <p className="App-intro">This is About page!</p>
+    <p className="about-intro">This is About page!</p>
     <Button type="primary"><Link to="/">Go to Home</Link></Button>
   </div>
 );

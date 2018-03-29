@@ -6,6 +6,8 @@ const themeVariables = lessToJs(fs.readFileSync(paths.antThemeVars, 'utf8'));
 // const antdVars = require('./antdVars');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 
+console.dir(themeVariables)
+
 exports.resolve = {
   // This allows you to set a fallback for where Webpack should look for modules.
   // We placed these paths second because we want `node_modules` to "win"
