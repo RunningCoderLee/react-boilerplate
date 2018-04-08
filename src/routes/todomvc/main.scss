@@ -1,0 +1,52 @@
+.toggle-all {
+  position: absolute;
+  top: 15px;
+  left: -14px;
+  width: 60px;
+  height: 35px;
+  text-align: center;
+  border: none;
+  outline: none;
+
+  /* Mobile Safari */
+
+  &::before {
+    content: '❯';
+    font-size: 22px;
+    color: #e6e6e6;
+    padding: 10px 27px 10px 27px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:checked::before {
+    color: #737373;
+  }
+}
+
+.todo-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: '0') {
+  .toggle-all,
+  .todo-list .todo-item__toggle {
+    background: none;
+  }
+
+  .todo-list .todo-item__toggle {
+    height: 40px;
+  }
+
+  .toggle-all {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+

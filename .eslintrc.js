@@ -23,7 +23,7 @@ module.exports = {
     },
   },
   overrides: {
-    "files": ["src/**/*.jsx"],
+    "files": ["src/**/*.jsx", "src/**/*.js"],
     "rules": {
       'jsx-a11y/anchor-is-valid': ['error', {
         components: [],
@@ -31,6 +31,12 @@ module.exports = {
         aspects: ['noHref', 'invalidHref', 'preferButton'],
       }],
       'import/no-unresolved': ['error', { commonjs: true, caseSensitive: false }],
+      'no-underscore-dangle': ['error', {
+        allow: [],
+        allowAfterThis: true,
+        allowAfterSuper: false,
+        enforceInMethodNames: false,
+      }],
     }
   }
 };

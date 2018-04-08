@@ -51,6 +51,7 @@ module.exports = {
   appComponents: resolveApp('src/components'),
   appConfig: resolveApp('config'),
   appConfiguration: resolveApp('config/configuration.yaml'),
+  appModels: resolveApp('src/models'),
   antThemeVars: resolveApp('config/antThemeVars.less'),
   appStyles: resolveApp('src/styles'),
   appUtils: resolveApp('src/utils'),
