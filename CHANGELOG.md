@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/RunningCoderLee/react-boilerplate/compare/v0.4.1...v0.5.0) (2018-04-08)
+
+
+### Bug Fixes
+
+* **全局:** 修复生产环境编译的webpack ([4bf9805](https://github.com/RunningCoderLee/react-boilerplate/commit/4bf9805))
+
+
+### Features
+
+* **全局:** 剥离redux ([163ad0b](https://github.com/RunningCoderLee/react-boilerplate/commit/163ad0b))
+* **全局:** 升级依赖包版本 ([509342f](https://github.com/RunningCoderLee/react-boilerplate/commit/509342f))
+* **全局:** 增加统一的配置入口文件 ([a764d48](https://github.com/RunningCoderLee/react-boilerplate/commit/a764d48))
+* **全局:** 添加 todoMVC应用demo ([41b9eaa](https://github.com/RunningCoderLee/react-boilerplate/commit/41b9eaa))
+
+
+
 <a name="0.4.1"></a>
 ## [0.4.1](http://git.cd.romens.cn:2289/romens-cn/boilerplate/compare/v0.4.0...v0.4.1) (2018-01-08)
 
