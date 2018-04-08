@@ -1,12 +1,11 @@
 # Romens React脚手架
 [![Version](https://img.shields.io/badge/version-0.4.1-orange.svg)](#)
-[![create-react-app](https://img.shields.io/badge/create--react--app-v1.0.17-brightgreen.svg)](https://github.com/facebookincubator/create-react-app/releases/tag/v1.0.13)
-[![eslint-config-airbnb](https://img.shields.io/badge/eslint--config--airbnb-v15.1.0-red.svg)](https://github.com/airbnb/javascript/releases/tag/eslint-config-airbnb-v15.1.0)
-[![ant-design](https://img.shields.io/badge/ant--design-v3.1.0-blue.svg)]()
+[![create-react-app](https://img.shields.io/badge/create--react--app-v1.0.17-brightgreen.svg)](https://github.com/facebookincubator/create-react-app/releases/tag/v1.5.2)
+[![eslint-config-airbnb](https://img.shields.io/badge/eslint--config--airbnb-v15.1.0-red.svg)](https://github.com/airbnb/javascript/releases/tag/eslint-config-airbnb-v16.1.0)
+[![ant-design](https://img.shields.io/badge/ant--design-v3.4.0-blue.svg)]()
 
 此脚手架基于[create-react-app](https://raw.githubusercontent.com/facebookincubator/create-react-app)创建
 
-原始文档请参阅[create-react-app-README](./README.create-react-app.md)
 
 
 ## 特性
