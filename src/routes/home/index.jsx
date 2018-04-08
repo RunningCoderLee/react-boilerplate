@@ -14,6 +14,9 @@ const Home = () => (
       <Button type="primary"><Link to="/todo-mvc">Go to TodoMVC</Link></Button>
       <br />
       <br />
+      <Button type="primary"><Link to="/counter">Go to Counter</Link></Button>
+      <br />
+      <br />
       <Button type="primary"><Link to="/about">Go to About</Link></Button>
     </nav>
   </div>

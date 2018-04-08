@@ -237,9 +237,9 @@ ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-antd@3.3.3:
-  version "3.3.3"
-  resolved "http://registry.npm.taobao.org/antd/download/antd-3.3.3.tgz#048a6550dffb355443d169226be05593c638e0cc"
+antd@3.4.0:
+  version "3.4.0"
+  resolved "http://registry.npm.taobao.org/antd/download/antd-3.4.0.tgz#ad67872ab3d3e31d32b2b6feabc2fa5f5b27a48e"
   dependencies:
     array-tree-filter "^2.0.0"
     babel-runtime "6.x"
@@ -264,7 +264,7 @@ antd@3.3.3:
     rc-input-number "~4.0.0"
     rc-menu "~6.2.0"
     rc-notification "~3.0.0"
-    rc-pagination "~1.16.0"
+    rc-pagination "~1.16.1"
     rc-progress "~2.2.2"
     rc-rate "~2.4.0"
     rc-select "~7.7.0"
@@ -275,12 +275,12 @@ antd@3.3.3:
     rc-tabs "~9.2.0"
     rc-time-picker "~3.3.0"
     rc-tooltip "~3.7.0"
-    rc-tree "~1.7.11"
+    rc-tree "~1.8.0"
     rc-tree-select "~1.12.0"
     rc-upload "~2.4.0"
     rc-util "^4.0.4"
     react-lazy-load "^3.0.12"
-    react-slick "~0.21.0"
+    react-slick "~0.22.3"
     shallowequal "^1.0.1"
     warning "~3.0.0"
 
@@ -5852,6 +5852,16 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   dependencies:
     minimist "0.0.8"
 
+mobx-react@^5.0.0:
+  version "5.0.0"
+  resolved "http://registry.npm.taobao.org/mobx-react/download/mobx-react-5.0.0.tgz#8d5a33be376fa22b184a6f555d40a6a3a8459a16"
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+
+mobx@^4.1.1:
+  version "4.1.1"
+  resolved "http://registry.npm.taobao.org/mobx/download/mobx-4.1.1.tgz#7ce7ef92b22e85271d1fc274a124d7fa32fcceeb"
+
 moment@2.21.0, moment@2.x, moment@^2.19.3:
   version "2.21.0"
   resolved "http://registry.npm.taobao.org/moment/download/moment-2.21.0.tgz#2a114b51d2a6ec9e6d83cf803f838a878d8a023a"
@@ -7213,7 +7223,7 @@ rc-notification@~3.0.0:
     rc-animate "2.x"
     rc-util "^4.0.4"
 
-rc-pagination@~1.16.0:
+rc-pagination@~1.16.1:
   version "1.16.2"
   resolved "http://registry.npm.taobao.org/rc-pagination/download/rc-pagination-1.16.2.tgz#650df893ac1bc18ebd8112bca72d372b672be233"
   dependencies:
@@ -7337,9 +7347,20 @@ rc-tree-select@~1.12.0:
     rc-trigger "^2.2.2"
     rc-util "^4.0.2"
 
-rc-tree@~1.7.1, rc-tree@~1.7.11:
+rc-tree@~1.7.1:
   version "1.7.11"
   resolved "http://registry.npm.taobao.org/rc-tree/download/rc-tree-1.7.11.tgz#349de6383fc7d22bf4c13b0751794111022adddf"
+  dependencies:
+    babel-runtime "^6.23.0"
+    classnames "2.x"
+    prop-types "^15.5.8"
+    rc-animate "2.x"
+    rc-util "^4.0.4"
+    warning "^3.0.0"
+
+rc-tree@~1.8.0:
+  version "1.8.0"
+  resolved "http://registry.npm.taobao.org/rc-tree/download/rc-tree-1.8.0.tgz#c9eb6c45337314526e48284b7ee6c9f6df1cacc7"
   dependencies:
     babel-runtime "^6.23.0"
     classnames "2.x"
@@ -7460,16 +7481,16 @@ react-router@^4.2.0:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-slick@~0.21.0:
-  version "0.21.0"
-  resolved "http://registry.npm.taobao.org/react-slick/download/react-slick-0.21.0.tgz#677548bc6bcaf6916286d3682c8283feb26a2566"
+react-slick@~0.22.3:
+  version "0.22.3"
+  resolved "http://registry.npm.taobao.org/react-slick/download/react-slick-0.22.3.tgz#667991b2496e6b10bcca2a2e676ffadf34e7d56c"
   dependencies:
     can-use-dom "^0.1.0"
     classnames "^2.2.5"
     create-react-class "^15.5.2"
     enquire.js "^2.1.6"
     json2mq "^0.2.0"
-    object-assign "^4.1.0"
+    resize-observer-polyfill "^1.5.0"
 
 react@^16.3.1:
   version "16.3.1"
@@ -7881,6 +7902,10 @@ require-uncached@^1.0.3:
 requires-port@1.0.x, requires-port@1.x.x, requires-port@~1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/requires-port/download/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
+
+resize-observer-polyfill@^1.5.0:
+  version "1.5.0"
+  resolved "http://registry.npm.taobao.org/resize-observer-polyfill/download/resize-observer-polyfill-1.5.0.tgz#660ff1d9712a2382baa2cad450a4716209f9ca69"
 
 resolve-cwd@^2.0.0:
   version "2.0.0"

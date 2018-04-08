@@ -5,6 +5,7 @@ import TodoListStore from 'Models/todoListModel';
 
 import Home from './home/index';
 import About from './about/index';
+import Counter from './counter/index';
 import TodoApp from './todomvc/index';
 
 const todoListStore = new TodoListStore('myTodos');
@@ -19,6 +20,7 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/todo-mvc" render={renderTodoApp} />
+      <Route exact path="/counter" component={Counter} />
       <Route path="/about" component={About} />
     </Switch>
   </Router>
