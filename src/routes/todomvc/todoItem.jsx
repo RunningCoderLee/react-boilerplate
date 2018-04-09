@@ -12,8 +12,6 @@ class TodoItem extends Component {
       title: PropTypes.string.isRequired,
       completed: PropTypes.bool.isRequired,
     }).isRequired,
-    onToggle: PropTypes.func.isRequired,
-    onUpdateTitle: PropTypes.func.isRequired,
     onDestroy: PropTypes.func.isRequired,
   }
 
@@ -26,8 +24,8 @@ class TodoItem extends Component {
   }
 
   handleToggle = () => {
-    const { todo: { id } } = this.props;
-    this.props.onToggle(id);
+    const { todo } = this.props;
+    todo.toggle();
   }
 
   handleEntryEditing = () => {
@@ -37,22 +35,22 @@ class TodoItem extends Component {
     });
   }
 
-  handleSubmit = (e) => {
+  handleUpdateTitle = (e) => {
     const val = e.target.value.trim();
-    const { todo: { id } } = this.props;
+    const { todo } = this.props;
 
     if (val) {
       this.setState({
         editing: false,
       });
-      this.props.onUpdateTitle(id, val);
+      todo.setTitle(val);
     } else {
-      this.props.onDestroy(id);
+      this.props.onDestroy(todo);
     }
   }
 
   handleDestroy = () => {
-    this.props.onDestroy(this.props.todo.id);
+    this.props.onDestroy(this.props.todo);
   }
 
   handleChangeTitle = (e) => {
@@ -70,7 +68,7 @@ class TodoItem extends Component {
         });
         break;
       case 'Enter':
-        this.handleSubmit(e);
+        this.handleUpdateTitle(e);
         break;
       default:
     }
@@ -87,6 +85,7 @@ class TodoItem extends Component {
       'container--completed': completed,
       'container--editing': editing,
     });
+
     return (
       <li className={className}>
         <div className={styles.view}>
@@ -111,7 +110,7 @@ class TodoItem extends Component {
           type="text"
           className={styles.edit}
           value={this.state.editText}
-          onBlur={this.handleSubmit}
+          onBlur={this.handleUpdateTitle}
           onChange={this.handleChangeTitle}
           onKeyDown={this.handleKeyDown}
         />

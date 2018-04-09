@@ -26,6 +26,7 @@ exports.resolve = {
     'react-native': 'react-native-web',
     'Assets': paths.appAssets,
     'Models': paths.appModels,
+    'Stores': paths.appStores,
     'Styles': paths.appStyles,
     'Utils': paths.appUtils,
   },

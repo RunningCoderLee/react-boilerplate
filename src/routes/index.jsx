@@ -1,17 +1,31 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'mobx-react';
 
-import TodoListStore from 'Models/todoListModel';
+import TodoListStore from 'Stores/todoListStore';
+import FilterStore from 'Stores/filterStore';
+import Utils from 'Utils/index';
 
 import Home from './home/index';
 import About from './about/index';
 import Counter from './counter/index';
 import TodoApp from './todomvc/index';
 
-const todoListStore = new TodoListStore('myTodos');
+
+let todoListStore = new TodoListStore('myTodos');
+const localTodoListStore = Utils.store('myTodos');
+if (localTodoListStore) {
+  todoListStore = TodoListStore.fromJS(localTodoListStore);
+}
+const filterStore = new FilterStore();
+
 
 function renderTodoApp() {
-  return <TodoApp todoListStore={todoListStore} />;
+  return (
+    <Provider todoListStore={todoListStore} filterStore={filterStore}>
+      <TodoApp />
+    </Provider>
+  );
 }
 
 

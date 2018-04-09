@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { inject } from 'mobx-react';
 import { FilterTypes } from 'Utils/enumerations';
 
 import styles from './footer.scss';
 
+@inject('filterStore')
 class Footer extends Component {
   static propTypes = {
+    filterStore: PropTypes.shape({
+      change: PropTypes.func.isRequired,
+    }).isRequired,
     activeTodoCount: PropTypes.number.isRequired,
     onClearCompleted: PropTypes.func,
     filter: PropTypes.oneOf(Object.values(FilterTypes)).isRequired,
-    onChangeFilter: PropTypes.func.isRequired,
     showClearCompleted: PropTypes.bool.isRequired,
   }
 
@@ -21,11 +25,11 @@ class Footer extends Component {
     this.props.onClearCompleted();
   }
 
-  renderFilterLink = (filterName, caption) => (
+  renderFilterLink = (filterType, caption) => (
     <li className={styles['filter-container']}>
       <button
-        className={(filterName === this.props.filter) ? styles['filter--selected'] : styles.filter}
-        onClick={() => this.props.onChangeFilter(filterName)}
+        className={(filterType === this.props.filter) ? styles['filter--selected'] : styles.filter}
+        onClick={() => this.props.filterStore.change(filterType)}
       >{caption}
       </button>
       {' '}

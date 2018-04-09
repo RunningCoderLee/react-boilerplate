@@ -2,8 +2,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v1';
+import { observer, inject, PropTypes as mxPropTypes } from 'mobx-react';
+import { FilterTypes } from 'Utils/enumerations';
 
-// import TodoList from 'Models/todoListModel';
 import Header from './header';
 import Main from './main';
 import Footer from './footer';
@@ -11,23 +12,17 @@ import Footer from './footer';
 import styles from './style.scss';
 // endregion import modules
 
+@inject('todoListStore', 'filterStore')
+@observer
 class TodoApp extends Component {
   static propTypes = {
     todoListStore: PropTypes.shape({
-      todoList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-      subscribe: PropTypes.func.isRequired,
+      todos: mxPropTypes.observableArray.isRequired,
       addTodo: PropTypes.func.isRequired,
-      toggleTodo: PropTypes.func.isRequired,
       toggleAll: PropTypes.func.isRequired,
-      updateTitle: PropTypes.func.isRequired,
-      destroy: PropTypes.func.isRequired,
       clearCompleted: PropTypes.func.isRequired,
-      changeFilter: PropTypes.func.isRequired,
     }).isRequired,
-  }
-
-  componentDidMount() {
-    this.props.todoListStore.subscribe(this.forceUpdate.bind(this));
+    filterStore: PropTypes.shape({}).isRequired,
   }
 
   handleEnter = (val) => {
@@ -38,57 +33,46 @@ class TodoApp extends Component {
     });
   }
 
-  handleToggle = (id) => {
-    this.props.todoListStore.toggleTodo(id);
-  }
-
-  handleToggleAll = (checked) => {
-    this.props.todoListStore.toggleAll(checked);
-  }
-
-  handleUpdateTitle = (id, val) => {
-    this.props.todoListStore.updateTitle(id, val);
-  }
-
-  handleDestroy = (id) => {
-    this.props.todoListStore.destroy(id);
-  }
-
   handleClearCompleted = () => {
     this.props.todoListStore.clearCompleted();
   }
 
-  handleChangeFilter = (type) => {
-    this.props.todoListStore.changeFilter(type);
-  }
-
   renderMain = () => {
-    const { todoListStore } = this.props;
-    const { todoList } = todoListStore;
+    const { todoListStore, filterStore } = this.props;
+    const { todos } = todoListStore;
+    let shownTodos;
 
-    if (todoList.length === 0) {
+    if (todos.length === 0) {
       return null;
     }
 
     const allCompleted = (todoListStore.activeTodos === 0);
 
+    switch (filterStore.type) {
+      case FilterTypes.ACTIVE:
+        shownTodos = todoListStore.activeTodos;
+        break;
+      case FilterTypes.COMPLETED:
+        shownTodos = todoListStore.completedTodos;
+        break;
+      default:
+        shownTodos = todoListStore.todos;
+        break;
+    }
+
     return (
       <Main
         allCompleted={allCompleted}
-        shownTodos={todoListStore.shownTodos}
-        onToggleAll={this.handleToggleAll}
-        onToggle={this.handleToggle}
-        onUpdateTitle={this.handleUpdateTitle}
-        onDestroy={this.handleDestroy}
+        shownTodos={shownTodos}
       />
     );
   }
 
   renderFooter = () => {
-    const { todoListStore } = this.props;
-    const { todoList } = todoListStore;
+    const { todoListStore, filterStore } = this.props;
+    const { todos } = todoListStore;
 
-    if (todoList.length === 0) {
+    if (todos.length === 0) {
       return null;
     }
 
@@ -98,8 +82,7 @@ class TodoApp extends Component {
       <Footer
         activeTodoCount={todoListStore.activeTodos.length}
         onClearCompleted={this.handleClearCompleted}
-        filter={todoListStore.filter}
-        onChangeFilter={this.handleChangeFilter}
+        filter={filterStore.type}
         showClearCompleted={shouldShowClearCompleted}
       />
     );

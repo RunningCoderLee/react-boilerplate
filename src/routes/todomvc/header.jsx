@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import { inject, PropTypes } from 'mobx-react';
 
 import styles from './header.scss';
 
+@inject('todoListStore')
 export default class Header extends Component {
   static propTypes = {
-    onEnter: PropTypes.func,
-  }
-
-  static defaultProps = {
-    onEnter: () => {},
+    todoListStore: PropTypes.observableObject.isRequired,
   }
 
   handleNewTodoKeyDown = (e) => {
@@ -21,8 +19,9 @@ export default class Header extends Component {
 
     const val = this.newField.value.trim();
 
+
     if (val) {
-      this.props.onEnter(val);
+      this.props.todoListStore.addTodo(val);
       this.newField.value = '';
     }
   }

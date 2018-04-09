@@ -53,6 +53,7 @@ module.exports = {
   appConfiguration: resolveApp('config/configuration.yaml'),
   appModels: resolveApp('src/models'),
   antThemeVars: resolveApp('config/antThemeVars.less'),
+  appStores: resolveApp('src/stores'),
   appStyles: resolveApp('src/styles'),
   appUtils: resolveApp('src/utils'),
   yarnLockFile: resolveApp('yarn.lock'),

@@ -10,7 +10,7 @@ class Utils {
       return JSON.parse(store);
     }
 
-    return [];
+    return null;
   }
 }
 

@@ -1,52 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { inject, PropTypes as mxPropTypes } from 'mobx-react';
 
 import TodoItem from './todoItem';
 
 import styles from './main.scss';
 
+@inject('todoListStore')
 class Main extends Component {
   static propTypes = {
+    todoListStore: PropTypes.shape({
+      toggleAll: PropTypes.func.isRequired,
+      destroy: PropTypes.func.isRequired,
+    }).isRequired,
     // allCompleted: PropTypes.bool.isRequired,
-    shownTodos: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-    onToggle: PropTypes.func,
-    onToggleAll: PropTypes.func,
-    onUpdateTitle: PropTypes.func,
-    onDestroy: PropTypes.func,
-  }
-
-  static defaultProps = {
-    onToggle: () => {},
-    onToggleAll: () => {},
-    onUpdateTitle: () => {},
-    onDestroy: () => {},
-  }
-
-  handleToggle = (id) => {
-    this.props.onToggle(id);
-  }
-
-  handleUpdateTitle = (id, val) => {
-    this.props.onUpdateTitle(id, val);
+    shownTodos: PropTypes.oneOfType([
+      mxPropTypes.observableArray,
+      PropTypes.arrayOf(PropTypes.shape({})),
+    ]).isRequired,
   }
 
   handleToggleAll = (e) => {
     const { checked } = e.target;
 
-    this.props.onToggleAll(checked);
+    this.props.todoListStore.toggleAll(checked);
   }
 
-  handleDestroy = (id) => {
-    this.props.onDestroy(id);
+  handleDestroy = (todo) => {
+    this.props.todoListStore.destroy(todo);
   }
 
   renderTodoIterms = shownTodos => shownTodos.map(todo => (
     <TodoItem
       key={todo.id}
       todo={todo}
-      onToggle={this.handleToggle}
       onDestroy={this.handleDestroy}
-      onUpdateTitle={this.handleUpdateTitle}
     />
   ))
 
