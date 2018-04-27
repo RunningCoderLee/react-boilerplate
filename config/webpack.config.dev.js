@@ -148,8 +148,9 @@ module.exports = {
                 options: {
                   sourceMap     : true,
                   importLoaders : 1,
-                  modules: true,
-                  localIdentName: '[name]__[local]___[hash:base64:5]'
+                  // 使用类似react-fa库时，不能在这里设置modules：true
+                  // modules: true,
+                  // localIdentName: '[name]__[local]___[hash:base64:5]'
                 },
               },
               {

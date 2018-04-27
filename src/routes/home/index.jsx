@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
+import { Icon } from 'react-fa';
 
 import Header from './header';
 
@@ -12,6 +13,7 @@ const Home = () => (
     <Header />
     <nav className={styles.nav}>
       <Button type="primary"><Link to="/todo-mvc">Go to TodoMVC</Link></Button>
+      <Icon name="coffee" />
       <br />
       <br />
       <Button type="primary"><Link to="/counter">Go to Counter</Link></Button>
